@@ -11,11 +11,6 @@ namespace SegundaApiCrud.Context
         {
            
         }
-        DbSet<Articulo> Articulos { get; set; }
-
-        public static implicit operator ApplicationBuilder(ApplicationDbContext v)
-        {
-            throw new NotImplementedException();
-        }
+        public DbSet<Articulo> Articulos { get; set; }
     }
 }

@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SegundaApiCrud.Context;
 using SegundaApiCrud.Entities;
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace SegundaApiCrud.Controllers
@@ -21,33 +24,81 @@ namespace SegundaApiCrud.Controllers
         [HttpPost]
         public async Task<Articulo> Crear([FromBody] Articulo i)
         {
-            var res = new Articulo
-            {   
-                Id = i.Id,
-                Nombre = i.Nombre,
-                Proveedor = i.Proveedor,
-                Precio = i.Precio
-                
-            };
-            _context.Add(res);
-            //Llamar a entity para agregar 
-            await _context.SaveChangesAsync();
-            return res;
+            try
+            {
+                var res = new Articulo
+                {
+                    Id = i.Id,
+                    Nombre = i.Nombre,
+                    Proveedor = i.Proveedor,
+                    Precio = i.Precio
+
+                };
+                _context.Add(res);
+                //Llamar a entity para agregar 
+                await _context.SaveChangesAsync();
+                return res;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error:" + ex.Message);
+            }
+
         }
         [HttpGet]
-        public async Task<Articulo> Leer([FromBody] Articulo i) 
+        public async Task<List<Articulo>> Leer()
         {
-
+            try
+            {
+                var res= await _context.Articulos.ToListAsync();
+                
+                return res;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error:" + ex.Message);
+            }
         }
         [HttpPut]
         public async Task<Articulo> Actualizar([FromBody] Articulo i)
         {
-
+            try
+            {
+                var res = new Articulo
+                {
+                    Id = i.Id,
+                    Nombre = i.Nombre,
+                    Proveedor = i.Proveedor,
+                    Precio = i.Precio
+                };
+                _context.Update(res);
+                //Llamar a entity para agregar 
+                await _context.SaveChangesAsync();
+                return res;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error:" + ex.Message);
+            }
         }
         [HttpDelete]
-        public async Task<Articulo> Eliminar([FromBody] Articulo i)
+        public async Task<Articulo> Eliminar(int i)
         {
-
+            try
+            {
+                var res = new Articulo
+                {
+                    Id = i
+                };
+                _context.Remove(res);
+                //Llamar a entity para agregar 
+                await _context.SaveChangesAsync();
+                return res;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error:" + ex.Message);
+            }
         }
     }
 }
