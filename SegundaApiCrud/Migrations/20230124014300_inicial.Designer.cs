@@ -9,8 +9,8 @@ using SegundaApiCrud.Context;
 namespace SegundaApiCrud.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230123133235_inital")]
-    partial class inital
+    [Migration("20230124014300_inicial")]
+    partial class inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

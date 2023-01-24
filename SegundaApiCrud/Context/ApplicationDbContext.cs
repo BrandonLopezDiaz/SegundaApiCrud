@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
 using SegundaApiCrud.Entities;
+using System;
 
 namespace SegundaApiCrud.Context
 {
@@ -9,6 +11,11 @@ namespace SegundaApiCrud.Context
         {
            
         }
-        DbSet<Articulo> Articulos { get; set; } 
+        DbSet<Articulo> Articulos { get; set; }
+
+        public static implicit operator ApplicationBuilder(ApplicationDbContext v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

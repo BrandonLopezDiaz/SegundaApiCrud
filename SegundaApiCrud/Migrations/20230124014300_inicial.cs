@@ -2,7 +2,7 @@
 
 namespace SegundaApiCrud.Migrations
 {
-    public partial class inital : Migration
+    public partial class inicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
